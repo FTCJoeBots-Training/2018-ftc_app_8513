@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+import android.graphics.Color;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
@@ -37,7 +38,6 @@ public class GraceHardwareJoeBot2018 {
     /* Public OpMode members. */
 
     //Declar Color Distance Sensor
-
     public ColorSensor sensorColor;
     public DistanceSensor sensorDistance;
 
@@ -434,17 +434,40 @@ public class GraceHardwareJoeBot2018 {
 
     }
 
-
+    //Strafe the robot to left or right
     public void StrafeRobot(double Strafeinches, char StrafeDir, int timeoutSec) {
-        double strafetime = Strafeinches / 3.5 ;
-        if(StrafeDir =='L') {
-            while (runtime.seconds() < strafetime) {
-                moveRobot(0, -.25, 0);
+        double strafetime = Strafeinches / 3.25;
+        // Strafe robot to the left
+        if (StrafeDir == 'L') {
+            while (runtime.seconds() < strafetime && runtime.seconds() < timeoutSec) {
+                moveRobot(0, -0.25, 0);
             }
-        } else{
-            while (runtime.seconds() < strafetime) {
-                moveRobot(0, .25, 0);
+            //Stop the motors
+            stop();
+
+        } else {
+            while (runtime.seconds() < strafetime && runtime.seconds() < timeoutSec) {
+                moveRobot(0, 0.25, 0);
             }
+            //Stop the motors
+            stop();
+        }
+    }
+
+    //detect the gold mineral
+    public boolean IsGold(){
+        float hsvValues[] = {0F, 0F, 0F};
+        final float values[] = hsvValues;
+        final double SCALE_FACTOR = 255;
+        Color.RGBToHSV((int) (sensorColor.red() * SCALE_FACTOR),
+                (int) (sensorColor.green() * SCALE_FACTOR),
+                (int) (sensorColor.blue() * SCALE_FACTOR),
+                hsvValues);
+        if (hsvValues[0] >= 20 && hsvValues[0] <= 40){
+            return true;
+        }
+        else {
+            return false;
         }
     }
 }
