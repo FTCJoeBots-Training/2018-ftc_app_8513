@@ -433,10 +433,28 @@ public class TestHardwareJoeBots
 
 
 
-    public void getAngleLocation(){
+    int angleDifference;
 
-  //      if getAngle()
+    public void setAngleDifference(double angleDifference) {
+        angleDifference = getAngle()-45;
+        if (angleDifference < 0) angleDifference = -angleDifference;
     }
+
+    public void checkAngle(){
+        if (getAngle() < 45){
+
+            rotate(angleDifference, 0.15);
+        } else {
+            rotate(-angleDifference, 0.15);
+
+
+        }
+
+    }
+
+
+
+
 
     /**
      *
@@ -507,6 +525,8 @@ public class TestHardwareJoeBots
             }
 
         }
+
+
 
 
 

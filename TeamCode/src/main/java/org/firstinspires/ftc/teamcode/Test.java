@@ -57,7 +57,7 @@ public class Test extends LinearOpMode {
         robot.init(hardwareMap, this);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Resetting Encoders");    //
+        telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
 
         robot.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -67,8 +67,9 @@ public class Test extends LinearOpMode {
         waitForStart();
 
 
-        robot.moveInches(5,1,5);
-        robot.strafeInches(5, 1,15);
+        robot.checkAngle();
+        //robot.moveInches(5,1,5);
+        //robot.strafeInches(5, 1,15);
 
         // Wait for the game to start (driver presses PLAY)
 
