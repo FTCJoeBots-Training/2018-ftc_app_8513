@@ -436,9 +436,10 @@ public class TestHardwareJoeBots
     int angleDifference;
 
     public void setAngleDifference(double angleDifference) {
-        angleDifference = getAngle()-45;
+        angleDifference = 45-getAngle();
         if (angleDifference < 0) angleDifference = -angleDifference;
     }
+
 
     public void checkAngle(){
         if (getAngle() < 45){
