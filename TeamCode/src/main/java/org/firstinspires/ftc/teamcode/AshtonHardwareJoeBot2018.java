@@ -91,6 +91,7 @@ public class AshtonHardwareJoeBot2018
         motor3 = hwMap.dcMotor.get("motor2");
         motor4 = hwMap.dcMotor.get("motor3");
 
+
         // Set Default Motor Directions
         motor1.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         motor2.setDirection(DcMotor.Direction.FORWARD); // Set to FORWARD if using AndyMark motors

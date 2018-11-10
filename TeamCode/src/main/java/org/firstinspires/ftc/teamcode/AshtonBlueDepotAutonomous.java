@@ -42,7 +42,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 @Autonomous(name="BlueDepotAutonomous", group="8513")
 //@Disabled
-public class BlueDepotAutonomous extends LinearOpMode {
+public class AshtonBlueDepotAutonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
     AshtonHardwareJoeBot2018      robot   = new AshtonHardwareJoeBot2018();

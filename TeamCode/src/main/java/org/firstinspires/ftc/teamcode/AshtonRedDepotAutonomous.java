@@ -40,9 +40,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="RedCraterAutonomous", group="8513")
+@Autonomous(name="RedDepotAutonomous", group="8513")
 //@Disabled
-public class RedCraterAutonomous extends LinearOpMode {
+public class AshtonRedDepotAutonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
     AshtonHardwareJoeBot2018      robot   = new AshtonHardwareJoeBot2018();
@@ -67,20 +67,17 @@ public class RedCraterAutonomous extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.moveInches(16.5, 0.65, 15);
+        robot.moveInches(15, 0.75, 15);
+        robot.rotate(-87,0.15);
 
-        //while(robot.sensorDistance.getDistance(DistanceUnit.INCH)>5){
+        robot.moveInches(43, 0.75, 15);
+        robot.rotate(128,0.15);
 
-        robot.rotate(-84,0.25);
+        robot.moveInches(50, 0.75, 15);
+        //robot.rotate(90,0.15);
 
-        robot.moveInches(50, 0.65, 15);
-        robot.rotate(-30,0.25);
-
-        robot.moveInches(-35, 0.65, 15);
-        //robot.rotate(-3,0.25);
-
-        robot.moveInches(-80, 0.85, 15);
-
+        robot.moveInches(-57, 0.75, 15);
+        //robot.rotate(90,0.15);
 
 
     }

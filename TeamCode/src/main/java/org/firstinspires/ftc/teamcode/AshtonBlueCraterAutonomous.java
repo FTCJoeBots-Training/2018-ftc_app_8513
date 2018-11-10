@@ -44,10 +44,10 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Autonomous(name="BlueCraterAutonomous", group="8513")
 //@Disabled
-public class BlueCraterAutonomous extends LinearOpMode {
+public class AshtonBlueCraterAutonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
+    HardwareJoeBot2018 robot = new HardwareJoeBot2018();
 
     @Override
     public void runOpMode() {
@@ -71,28 +71,27 @@ public class BlueCraterAutonomous extends LinearOpMode {
 
         robot.moveInches(16.5, 0.65, 15);
 
-        while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
-            //strafetime
-            //if: sensorDistance is <5
-            //then test for yellow
+        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
+        //strafetime
+        //if: sensorDistance is <5
+        //then test for yellow
 
-            //if yellow is true
-            //then sample
-            //else strafe while Sensordistance <5
-
-
-            robot.rotate(-84, 0.25);
-
-            robot.moveInches(50, 0.65, 15);
-            robot.rotate(-30, 0.25);
-
-            robot.moveInches(-35, 0.65, 15);
-            //robot.rotate(-3,0.25);
-
-            robot.moveInches(-80, 0.85, 15);
+        //if yellow is true
+        //then sample
+        //else strafe while Sensordistance <5
 
 
-        }
+        robot.rotate(-84, 0.25);
+
+        robot.moveInches(50, 0.65, 15);
+        robot.rotate(-30, 0.25);
+
+        robot.moveInches(-35, 0.65, 15);
+        //robot.rotate(-3,0.25);
+
+        robot.moveInches(-80, 0.85, 15);
+
+
     }
 
 }
