@@ -1,11 +1,14 @@
 package org.firstinspires.ftc.teamcode;
 
+import android.hardware.Sensor;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
@@ -46,6 +49,8 @@ public class HardwareJoeBot2018
     public DcMotor  elbowMotor =  null;
     public DcMotor  intakeMotor = null;
 
+    public Servo    mineralServo = null;
+    public Servo    markerServo = null;
 
     // Declare Sensors
     public BNO055IMU imu;                  // The IMU sensor object
@@ -71,18 +76,30 @@ public class HardwareJoeBot2018
     static final double COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.14159);
     static final double INTAKE_MOTOR_POWER = 0.4;
+
     static final int LIFT_DOWN_POSITION = 0;
     static final int LIFT_UP_POSITION = 2500;
     static final double LIFT_POWER = 0.3;
+
+
     static final int ELBOW_STOW_POS = 0;
     static final int ELBOW_SEARCH_POS = 365;
     static final int ELBOW_SCORE_POS = 351;
+
     static final int SHOULDER_STOW_POS = 0;
     static final int SHOULDER_SEARCH_POS = -1220;
     static final int SHOULDER_SCORE_POS = -267;
-    static final double ELBOW_STD_POWER = 0.4;
-    static final double SHOULDER_STD_POWER = 0.4;
 
+    static final double ELBOW_STD_POWER = 0.4;
+    static final double SHOULDER_STD_POWER = 0.5;
+
+    static final double MARKER_OPEN_POS = 0.8;
+    static final double MARKER_CLOSE_POS = 0.3;
+
+    static final double MINERAL_OPEN_POS = 0.3;
+    static final double MINERAL_CLOSE_POS = 0.8;
+
+    private boolean bMineralDoorOpen = false;
 
 
     /* Constructor */
@@ -131,6 +148,15 @@ public class HardwareJoeBot2018
         shoulderMotor.setPower(0);
         elbowMotor.setPower(0);
         intakeMotor.setPower(0);
+
+        // Map Servos
+        mineralServo = hwMap.get(Servo.class, "mineralServo");
+        markerServo = hwMap.get(Servo.class, "markerServo");
+
+        // Set intial Servo Positions
+        mineralServo.setPosition(MINERAL_OPEN_POS);
+        bMineralDoorOpen = true;
+        markerServo.setPosition(MARKER_CLOSE_POS);
 
 
         // Set all drive motors to run without encoders.
@@ -555,27 +581,87 @@ public class HardwareJoeBot2018
     }
 
     public void stowArm() {
-        // Move the arm to stowing position
-        shoulderMotor.setTargetPosition(SHOULDER_STOW_POS);
+        // Move the arm to stowing position. In initial testing we determined that we should begin
+        // to fold the elbow before we move the shoulder. This will (hopefully) prevent the shoulder
+        // from throwing the elbow out of position.
+
+        // Move the elbow first
         elbowMotor.setTargetPosition(ELBOW_STOW_POS);
-        shoulderMotor.setPower(SHOULDER_STD_POWER);
         elbowMotor.setPower(ELBOW_STD_POWER);
+
+        // sleep for 1/4 second to let the elbow get started.
+        myOpMode.sleep(250);
+
+        // now nove the shoulder
+        shoulderMotor.setTargetPosition(SHOULDER_STOW_POS);
+        shoulderMotor.setPower(SHOULDER_STD_POWER);
+
+        // In "stow" position, we don't need to hold the arm in place, so set motor power to zero
+        // after the shoulder is in place.
+        while (myOpMode.opModeIsActive() && shoulderMotor.isBusy()) {
+            myOpMode.idle();
+        }
+        shoulderMotor.setPower(0);
+
     }
 
     public void scoreArm() {
-        // Move the arm to Scoring position
-        shoulderMotor.setTargetPosition(SHOULDER_SCORE_POS);
-        elbowMotor.setTargetPosition(ELBOW_SCORE_POS);
-        shoulderMotor.setPower(SHOULDER_STD_POWER);
+        // Move the arm to Scoring position. Initial testing has shown that the arm carries too
+        // much momentum when moving to scoring position, and can thow it too far back. To control
+        // this, we're going to try to fold a the elbow first, reducing the force at the end of the
+        // arm.
+
+        // fold the elbow in
+        elbowMotor.setTargetPosition(ELBOW_STOW_POS);
         elbowMotor.setPower(ELBOW_STD_POWER);
+
+        // Move the shoulder to scoring position
+        shoulderMotor.setTargetPosition(SHOULDER_SCORE_POS);
+        shoulderMotor.setPower(SHOULDER_STD_POWER);
+
+        // Wait for the shoulder motor move to complete
+        while (myOpMode.opModeIsActive() && shoulderMotor.isBusy()) {
+            myOpMode.idle();
+        }
+
+        // move the elbow to scoring position
+        elbowMotor.setTargetPosition(ELBOW_SCORE_POS);
+        elbowMotor.setPower(ELBOW_STD_POWER);
+
     }
 
     public void searchArm() {
-        // Move the arm to Searching position
-        shoulderMotor.setTargetPosition(SHOULDER_SEARCH_POS);
+        // Move the arm to Searching position.
+
+        // Start the elbow moving forward
         elbowMotor.setTargetPosition(ELBOW_SEARCH_POS);
-        shoulderMotor.setPower(SHOULDER_STD_POWER);
         elbowMotor.setPower(ELBOW_STD_POWER);
+
+        // Start the shoulder moving forward
+        shoulderMotor.setTargetPosition(SHOULDER_SEARCH_POS);
+        shoulderMotor.setPower(SHOULDER_STD_POWER);
+    }
+
+    public void toggleMineralDoor() {
+
+        if(bMineralDoorOpen) {
+            //Mineral door is open; close it.
+            mineralServo.setPosition(MINERAL_CLOSE_POS);
+            bMineralDoorOpen = false;
+        } else {
+            // Mineral Door is closed. Open it.
+            mineralServo.setPosition(MINERAL_OPEN_POS);
+            bMineralDoorOpen = true;
+        }
+
+    }
+
+    public void dropMarker() {
+        // Open and Close Servo
+        markerServo.setPosition(MARKER_OPEN_POS);
+        myOpMode.sleep(1000);
+        markerServo.setPosition(MARKER_CLOSE_POS);
+
     }
 
 

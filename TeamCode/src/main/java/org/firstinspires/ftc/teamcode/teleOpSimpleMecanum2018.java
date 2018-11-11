@@ -168,6 +168,15 @@ public class teleOpSimpleMecanum2018 extends LinearOpMode {
             }
             bPrevStateY = bCurrStateY;
 
+            // X Button should open/close Mineral Door
+            bCurrStateX = gamepad2.x;
+            if ((bCurrStateX) && (bCurrStateX != bPrevStateX)) {
+                robot.toggleMineralDoor();
+            }
+            bPrevStateX = bCurrStateX;
+
+
+
 
             // Update Telemetry
             telemetry.addData(">", "Press Stop to end test.");
