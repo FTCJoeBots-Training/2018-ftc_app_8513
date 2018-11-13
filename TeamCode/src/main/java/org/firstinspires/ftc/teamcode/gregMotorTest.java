@@ -33,26 +33,49 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 /**
  * Sample code to test mapping of one motor to the gamepad.
  */
-@TeleOp(name = "Concept: Ramp Motor Speed", group = "Concept")
+@TeleOp(name = "READ Encoder Values", group = "Testing")
 //@Disabled
 public class gregMotorTest extends LinearOpMode {
 
 
     // Define class members
-    DcMotor motor1;
-    double  power   = 0;
+    DcMotor  liftMotor = null; // Lander Lift Motor
+    DcMotor  shoulderMotor = null;
+    DcMotor  elbowMotor =  null;
+    DcMotor  intakeMotor = null;
+
+    Servo    markerServo = null;
+    Servo    mineralServo = null;
 
 
     @Override
     public void runOpMode() {
 
-        // Connect to motor (Assume standard left wheel)
-        // Change the text in quotes to match any motor name on your robot.
-        motor1 = hardwareMap.get(DcMotor.class, "motor1");
+        liftMotor       = hardwareMap.dcMotor.get("liftMotor");
+        shoulderMotor   = hardwareMap.dcMotor.get("shoulderMotor");
+        elbowMotor      = hardwareMap.dcMotor.get("elbowMotor");
+        intakeMotor     = hardwareMap.dcMotor.get("intakeMotor");
+
+        markerServo     = hardwareMap.get(Servo.class, "markerServo");
+        mineralServo    = hardwareMap.get(Servo.class, "mineralServo");
+
+        liftMotor.setDirection(DcMotor.Direction.FORWARD);
+        shoulderMotor.setDirection(DcMotor.Direction.FORWARD);
+        elbowMotor.setDirection(DcMotor.Direction.FORWARD);
+        intakeMotor.setDirection(DcMotor.Direction.FORWARD);
+
+        liftMotor.setPower(0);
+        shoulderMotor.setPower(0);
+        elbowMotor.setPower(0);
+        intakeMotor.setPower(0);
+
+
+
 
         // Wait for the start button
         telemetry.addData(">", "Press Start to run Motors." );
@@ -61,13 +84,12 @@ public class gregMotorTest extends LinearOpMode {
 
         while(opModeIsActive()) {
 
-            // Map "power" variable to gamepad input
-            power = gamepad1.left_stick_y;
-            motor1.setPower(power);
-
-
             // Display the current value
-            telemetry.addData("Motor Power", "%5.2f", power);
+            telemetry.addData("liftMotor Pos: ", liftMotor.getCurrentPosition());
+            telemetry.addData("shoulderMotor Pos: ", shoulderMotor.getCurrentPosition());
+            telemetry.addData("elbowMotor Pos: ", elbowMotor.getCurrentPosition());
+            telemetry.addData("Marker Servo: ", markerServo.getPosition());
+            telemetry.addData("Mineral Servo: ", mineralServo.getPosition());
             telemetry.addData(">", "Press Stop to end test." );
             telemetry.update();
 
@@ -75,7 +97,6 @@ public class gregMotorTest extends LinearOpMode {
         }
 
         // Turn off motor and signal done;
-        motor1.setPower(0);
         telemetry.addData(">", "Done");
         telemetry.update();
 

@@ -44,12 +44,12 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  *
  */
 
-@Autonomous(name="Mecanum Code Testing", group="Testing")
+@Autonomous(name="Mecanum Square Testing", group="Testing")
 //@Disabled
 public class autoTestMecanumMoveCommands extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
+    HardwareJoeBot2018Turn      robot   = new HardwareJoeBot2018Turn();
 
     @Override
     public void runOpMode() {
@@ -71,18 +71,14 @@ public class autoTestMecanumMoveCommands extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.moveInches(12, 0.3, 15);
-        robot.rotate(90,0.15);
-
-        robot.moveInches(12, 0.3, 15);
-        robot.rotate(90,0.15);
-
-        robot.moveInches(12, 0.3, 15);
-        robot.rotate(90,0.15);
-
-        robot.moveInches(12, 0.3, 15);
-        robot.rotate(90,0.15);
-
+        robot.rotate(90,.3);
+        robot.moveInches(6, 0.3, 15);
+        robot.rotate(90,.3);
+        robot.moveInches(6, 0.3, 15);
+        robot.rotate(90,.3);
+        robot.moveInches(6, 0.5, 15);
+        robot.rotate(90,.3);
+        robot.moveInches(6, 0.5, 15);
 
     }
 
