@@ -60,6 +60,8 @@ public class teleOpSimpleMecanum2018 extends LinearOpMode {
 
             robot.moveRobot(forward, right, clockwise);
 
+            if (gamepad2.y = )
+
 
             // Update Telemetry
             telemetry.addData(">", "Press Stop to end test.");
