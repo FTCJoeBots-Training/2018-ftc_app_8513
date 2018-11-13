@@ -47,7 +47,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class GraceColorSensorDistanceTest extends LinearOpMode {
 
     /* Declare OpMode members. */
-    GraceHardwareJoeBot2018 robot = new GraceHardwareJoeBot2018();
+    HardwareJoeBot2018 robot = new HardwareJoeBot2018();
 
     @Override
     public void runOpMode() {
@@ -71,9 +71,8 @@ public class GraceColorSensorDistanceTest extends LinearOpMode {
         while (opModeIsActive()) {
             telemetry.addData("Distance (in)",
                     String.format("%.02f", robot.sensorDistance.getDistance(DistanceUnit.INCH)));
-
+            telemetry.update();
         }
-        telemetry.update();
     }
 
 }

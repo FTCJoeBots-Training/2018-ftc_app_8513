@@ -49,7 +49,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class GraceColorSensorTest extends LinearOpMode {
 
     /* Declare OpMode members. */
-    GraceHardwareJoeBot2018 robot = new GraceHardwareJoeBot2018();
+    HardwareJoeBot2018 robot = new HardwareJoeBot2018();
 
     ColorSensor sensorColor;
     DistanceSensor sensorDistance;
@@ -78,11 +78,7 @@ public class GraceColorSensorTest extends LinearOpMode {
         while (opModeIsActive()) {
             if (robot.IsGold()){
                 telemetry.addLine("gold mineral detected");
-                telemetry.addData("Alpha", sensorColor.alpha());
-                telemetry.addData("Red  ", sensorColor.red());
-                telemetry.addData("Green", sensorColor.green());
-                telemetry.addData("Blue ", sensorColor.blue());
-                telemetry.addData("Hue", hsvValues[0]);
+
             }
             else {
                 telemetry.addLine("Mineral is not gold");

@@ -47,6 +47,11 @@ public class GraceHardwareJoeBot2018 {
     public DcMotor motor3 = null; // Left Rear
     public DcMotor motor4 = null; // Right Rear
 
+    public DcMotor shoulderMotor = null;
+    public DcMotor elbowMotor = null;
+    public DcMotor intakeMotor = null;
+    public DcMotor liftMotor = null;
+
     // Declare Sensors
     public BNO055IMU imu;                  // The IMU sensor object
 
@@ -92,8 +97,14 @@ public class GraceHardwareJoeBot2018 {
         motor3 = hwMap.dcMotor.get("motor2"); //Back right
         motor4 = hwMap.dcMotor.get("motor3"); //Back left
 
+        shoulderMotor = hwMap.dcMotor.get("shoulderMotor");
+        elbowMotor = hwMap.dcMotor.get("elbowMotor");
+        intakeMotor = hwMap.dcMotor.get("intakeMotor");
+        liftMotor = hwMap.dcMotor.get("liftMotor");
+
         // Set Default Motor Directions
-        motor1.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
+        motor1.setDirection(DcMotor.Direction.REVERSE); // Set
+        // to REVERSE if using AndyMark motors
         motor2.setDirection(DcMotor.Direction.FORWARD); // Set to FORWARD if using AndyMark motors
         motor3.setDirection(DcMotor.Direction.REVERSE); // Set to REVERSE if using AndyMark motors
         motor4.setDirection(DcMotor.Direction.FORWARD); // Set to FORWARD if using AndyMark motors
@@ -471,98 +482,4 @@ public class GraceHardwareJoeBot2018 {
         }
     }
 }
-
-    /*public void StrafeRobot(double inches, char StrafeDir, int timeoutSec) {
-
-        // method will accept a value in inches and a direction and calculate the number of
-        // rotations required to drive the given distance to left or right
-
-        // Tell Telemetry what we're starting
-        //myOpMode.telemetry.log().add("Starting strafeRobot method");
-
-        // Declare needed variables
-        //int newMotor1Target;
-       // int newMotor2Target;
-        //int newMotor3Target;
-        //int newMotor4Target;
-
-        // Check to make sure the OpMode is still active; If it isn't don't run the method
-        //if(myOpMode.opModeIsActive()) {
-
-            // Determine new target positions for each wheel
-            //newMotor1Target = motor1.getCurrentPosition() + (int) (inches * COUNTS_PER_INCH);
-            //newMotor2Target = motor2.getCurrentPosition() + (int) (inches * COUNTS_PER_INCH);
-            //newMotor3Target = motor3.getCurrentPosition() + (int) (inches * COUNTS_PER_INCH);
-            //newMotor4Target = motor4.getCurrentPosition() + (int) (inches * COUNTS_PER_INCH);
-
-            // Send target Positions to motors
-            //motor1.setTargetPosition(newMotor1Target);
-            //motor2.setTargetPosition(newMotor2Target);
-            //motor3.setTargetPosition(newMotor3Target);
-            //motor4.setTargetPosition(newMotor4Target);
-
-            // Set Robot to RUN_TO_POSITION mode
-            //setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            // Reset the runtime
-            //runtime.reset();
-
-            // Set the wheels to turn correct directions based on which way to strafe
-            /*if (StrafeDir == 'R')
-            {
-                motor1.setPower(-1);
-                motor2.setPower(1);
-                motor3.setPower(1);
-                motor4.setPower(-1);
-            }
-            else {
-                motor1.setPower(1);
-                motor2.setPower(-1);
-                motor3.setPower(-1);
-                motor4.setPower(1);
-            }
-            //moveRobot(power,0,0);
-
-            // Keep looping (wait) until the motors are finished or timeout is reached.
-            while (myOpMode.opModeIsActive() && (runtime.seconds() < timeoutSec) &&
-                    (motor1.isBusy() && motor2.isBusy() && motor3.isBusy() && motor4.isBusy())) {
-
-
-                //Compose Telemetry message
-                myOpMode.telemetry.addLine("> Waiting for robot to reach target");
-                myOpMode.telemetry.addLine("Curr. Pos. |")
-                        .addData("1:",motor1.getCurrentPosition())
-                        .addData("2:",motor2.getCurrentPosition())
-                        .addData("3:",motor3.getCurrentPosition())
-                        .addData("4:",motor4.getCurrentPosition());
-                myOpMode.telemetry.addLine("Target | ")
-                        .addData("1:",newMotor1Target)
-                        .addData("2:",newMotor2Target)
-                        .addData("3:",newMotor3Target)
-                        .addData("4:",newMotor4Target);
-                myOpMode.telemetry.addData("Power: ", 1);
-                myOpMode.telemetry.update();
-
-                myOpMode.idle();
-            }
-
-            // Stop the motors
-            stop();
-
-            // Update telemetry log
-            myOpMode.telemetry.log().add("Ending StrafeRobot method");
-
-            // Set the motors back to standard mode
-            setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-
-        }*/
-        //double RotationNumber = inches/4;
-    //}
-
-//}*/
-
-
-
-
-
 

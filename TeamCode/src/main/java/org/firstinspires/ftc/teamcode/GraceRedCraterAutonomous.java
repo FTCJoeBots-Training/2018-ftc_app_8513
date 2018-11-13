@@ -33,8 +33,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
 /**
  *
  * This is a test Autonomous code to check the workings of the "moveInches" and "rotate" commands
@@ -42,12 +40,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  *
  */
 
-@Autonomous(name="Grace Strafe Test", group="8513")
+@Autonomous(name="Red Crater Autonomous", group="8513")
 //@Disabled
-public class GraceStrafeTest extends LinearOpMode {
+public class GraceRedCraterAutonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareJoeBot2018 robot = new HardwareJoeBot2018();
+    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
 
     @Override
     public void runOpMode() {
@@ -69,10 +67,19 @@ public class GraceStrafeTest extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //move robot left 15 inches
-        robot.StrafeRobot(15,'L',15);
+        robot.moveInches(16.5 , 0.65, 15);
+        robot.rotate(-84,0.25);
 
-        //move robot right 15 inches
-        robot.StrafeRobot(15,'R',15);
+        robot.moveInches(49.6, 0.65, 15);
+        robot.rotate(-30,0.25);
+
+        robot.moveInches(35, 0.65, 15);
+        //robot.rotate(-180,0.25);
+
+        robot.moveInches(-60, 0.85, 15);
+        //robot.rotate(90,0.15);
+
+
     }
+
 }
