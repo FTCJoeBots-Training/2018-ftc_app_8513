@@ -85,8 +85,11 @@ public class teleOpSimpleMecanum2018 extends LinearOpMode {
             robot.moveRobot(forward, right, clockwise);
 
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> d15ba73e16a4285350fa782240156320540d5185
             bCurrStateLB = gamepad2.left_bumper;
             if ((bCurrStateLB == true) && (bCurrStateLB != bPrevStateLB)) {
                 // Left bumper has been pressed. We should set intake to reverse
@@ -174,8 +177,13 @@ public class teleOpSimpleMecanum2018 extends LinearOpMode {
             bCurrStateX = gamepad2.x;
             if ((bCurrStateX) && (bCurrStateX != bPrevStateX)) {
                 robot.toggleMineralDoor();
+<<<<<<< HEAD
         }
         bPrevStateX = bCurrStateX;
+=======
+            }
+            bPrevStateX = bCurrStateX;
+>>>>>>> d15ba73e16a4285350fa782240156320540d5185
 
 
 
