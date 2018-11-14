@@ -50,7 +50,7 @@ public class TestHardwareJoeBots
     public BNO055IMU imu;                  // The IMU sensor object
 
     public ColorSensor sensorColor;
-    public DistanceSensor sensorDistance;
+    //public DistanceSensor sensorDistance;
 
     // Variables used for IMU tracking...
     public Orientation angles;

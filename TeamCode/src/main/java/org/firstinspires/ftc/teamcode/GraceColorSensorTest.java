@@ -52,7 +52,7 @@ public class GraceColorSensorTest extends LinearOpMode {
     GraceHardwareJoeBot2018 robot = new GraceHardwareJoeBot2018();
 
     ColorSensor sensorColor;
-    DistanceSensor sensorDistance;
+    //DistanceSensor sensorDistance;
     float hsvValues[] = {0F, 0F, 0F};
 
 

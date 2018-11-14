@@ -601,7 +601,7 @@ public class HardwareJoeBot2018
         while (myOpMode.opModeIsActive() && shoulderMotor.isBusy()) {
             myOpMode.idle();
         }
-        shoulderMotor.setPower(0);
+        shoulderMotor.setPower(0.5);
 
     }
 

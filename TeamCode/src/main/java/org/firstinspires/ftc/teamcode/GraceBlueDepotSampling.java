@@ -78,7 +78,7 @@ public class GraceBlueDepotSampling extends LinearOpMode {
         //robot.moveInches(5, 0.7, 15);
 
         //Uses color sensor distance to detect a sample. If the sample is outside the range, strafe the robot to its left side
-        while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
+        /*while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
             //robot.moveInches(0, 0.3, 2);
             //robot.rotate(0,0.15);
             //robot.moveInches(5, 0.3, 15);
@@ -95,7 +95,7 @@ public class GraceBlueDepotSampling extends LinearOpMode {
             robot.StrafeRobot(5,'L',5);
 
 
-        }
+        }*/
 
         //If the sample is found, use the color sensor to check the color. This code is not done yet, so I use stop command for now
         robot.stop();
@@ -105,24 +105,24 @@ public class GraceBlueDepotSampling extends LinearOpMode {
         robot.StrafeRobot(5,'L',5);
 
 
-        while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
+        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
             //robot.moveInches(0, 0.3, 2);
-            robot.StrafeRobot(5,'L',5);
+            //robot.StrafeRobot(5,'L',5);
 
-        }
+        //}
 
-        robot.stop();
+        //robot.stop();
 
         //Keep the robot move left again to see how reliable the move and distance sensor are
         //robot.moveInches(0, 0.3, 2);
         robot.StrafeRobot(5,'L',5);
 
 
-        while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 3) {
+        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 3) {
             //robot.moveInches(0, 0.3, 2);
-            robot.StrafeRobot(5,'L',5);
+            //robot.StrafeRobot(5,'L',5);
 
-        }
+        //}
 
         robot.stop();
 
