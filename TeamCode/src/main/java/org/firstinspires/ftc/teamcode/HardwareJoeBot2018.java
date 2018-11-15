@@ -45,9 +45,9 @@ public class HardwareJoeBot2018
     public DcMotor  motor2 = null; // Left Rear
     public DcMotor  motor3 = null; // Right Rear
     public DcMotor  liftMotor = null; // Lander Lift Motor
-    public DcMotor  shoulderMotor = null;
-    public DcMotor  elbowMotor =  null;
-    public DcMotor  intakeMotor = null;
+    public DcMotor  shoulderMotor = null;//shoulder Motor
+    public DcMotor  elbowMotor =  null;//elnow Motor
+    public DcMotor  intakeMotor = null;//intake Motor
 
     public Servo    mineralServo = null;
     public Servo    markerServo = null;
