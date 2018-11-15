@@ -71,7 +71,7 @@ public class BlueCraterAutonomous extends LinearOpMode {
 
         robot.moveInches(16.5, 0.65, 15);
 
-        while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
+        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
             //strafetime
             //if: sensorDistance is <5
             //then test for yellow
@@ -94,5 +94,3 @@ public class BlueCraterAutonomous extends LinearOpMode {
 
         }
     }
-
-}

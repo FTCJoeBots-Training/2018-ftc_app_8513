@@ -78,7 +78,7 @@ public class HardwareJoeBot2018
     static final double INTAKE_MOTOR_POWER = 0.4;
 
     static final int LIFT_DOWN_POSITION = 0;
-    static final int LIFT_UP_POSITION = 2500;
+    static final int LIFT_UP_POSITION = 4500;
     static final double LIFT_POWER = 0.3;
 
 
@@ -411,6 +411,25 @@ public class HardwareJoeBot2018
         // Set globalAngle to zero
         globalAngle = 0;
 
+    }
+    public void StrafeRobot(double Strafeinches, char StrafeDir, int timeoutSec) {
+        ElapsedTime myruntime = new ElapsedTime();
+        myruntime.reset();
+        double strafetime = Strafeinches / 3.5 ;
+        if(StrafeDir =='L') {
+            while (myruntime.seconds() < strafetime) {
+                moveRobot(0, -.25, 0);
+            }
+        } else{
+            while (myruntime.seconds() < strafetime) {
+                moveRobot(0, .25, 0);
+            }
+
+
+        }
+
+
+        stop();
     }
 
     /**

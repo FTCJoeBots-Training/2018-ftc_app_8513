@@ -45,7 +45,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class GraceBlueDepotAutonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
-    GraceHardwareJoeBot2018      robot   = new GraceHardwareJoeBot2018();
+    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
 
     @Override
     public void runOpMode() {
@@ -67,15 +67,22 @@ public class GraceBlueDepotAutonomous extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        //Detaches robot from lander
+        robot.raiseLift();
+        robot.StrafeRobot(7,'L', 10);
+        //robot.lowerLift();
+
+        //Gets the robot to the depot and drops the marker
+        //robot.StrafeRobot(7,'R',10);
         robot.moveInches(15, 0.75, 15);
         robot.rotate(-87,0.15);
-
         robot.moveInches(49, 0.75, 15);
         robot.rotate(128,0.15);
-
         robot.moveInches(50, 0.75, 15);
+        robot.dropMarker();
         //robot.rotate(90,0.15);
 
+        //Gets robot from depot to crater
         robot.moveInches(-57, 0.75, 15);
         //robot.rotate(90,0.15);
 
