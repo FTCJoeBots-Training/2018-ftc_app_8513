@@ -40,9 +40,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Blue Depot Autonomous New", group="8513")
+@Autonomous(name="Red Depot Autonomous New", group="8513")
 //@Disabled
-public class GraceBlueDepotAutonomousTest extends LinearOpMode {
+public class GraceRedDepotAutonomousTest extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -69,7 +69,7 @@ public class GraceBlueDepotAutonomousTest extends LinearOpMode {
 
         //Detaches robot from lander
         robot.raiseLift();
-        robot.StrafeRobot(9,'L', 10);
+        robot.StrafeRobot(7,'L', 10);
         //robot.lowerLift();
 
         //Gets the robot to the depot and drops the marker
