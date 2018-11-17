@@ -41,7 +41,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 
 @Autonomous(name="Blue Depot Autonomous 1", group="8513")
-//@Disabled
 public class GraceBlueDepotAutonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -54,7 +53,7 @@ public class GraceBlueDepotAutonomous extends LinearOpMode {
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
          */
-        robot.init(hardwareMap, this);
+        robot.init(hardwareMap,this);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");

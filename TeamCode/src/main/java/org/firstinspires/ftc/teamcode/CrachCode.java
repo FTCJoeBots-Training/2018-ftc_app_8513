@@ -35,8 +35,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  *
- * This is a test Autonomous code to check the workings of the "moveInches" and "rotate" commands
- * in the 2018 HardwareJoeBots class.
+ * This is a code to crash into the crater for 45 points.
+ *
  *
  */
 
@@ -56,6 +56,7 @@ public class CrachCode extends LinearOpMode {
          */
         robot.init(hardwareMap, this);
 
+
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
@@ -67,12 +68,13 @@ public class CrachCode extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        robot.raiseLift();
+        robot.strafeInches(4,'L',5);
+        robot.moveInches(2,0.6,5);
+        robot.strafeInches(-4,'R',5);
         robot.lowerLift();
-        robot.strafeInches(2,0.3,5);
-        robot.moveInches(2,0.75,5);
-        robot.strafeInches(-2,0.3,5);
-        robot.lowerLift();
-        robot.moveInches(40, 0.65, 15);
+        robot.moveInches(40, 1, 15);
+        robot.stop();
 
 
             //strafetime
