@@ -40,9 +40,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Blue Depot Autonomous New", group="8513")
+@Autonomous(name="Depot Corner", group="8513")
 //@Disabled
-public class GraceBlueDepotAutonomousTest extends LinearOpMode {
+public class DepotCompetition extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -75,15 +75,15 @@ public class GraceBlueDepotAutonomousTest extends LinearOpMode {
         //Gets the robot to the depot and drops the marker
         //robot.StrafeRobot(7,'R',10);
         robot.moveInches(43, 0.75, 15);
-        robot.rotate(63,0.15);
-        robot.moveInches(13, 0.75, 15);
+        robot.rotate(63,0.25);
+        robot.moveInches(17, 0.75, 15);
         //robot.rotate(128,0.15);
         //robot.moveInches(50, 0.75, 15);
         robot.dropMarker();
         //robot.rotate(90,0.15);
 
         //Gets robot from depot to crater
-        robot.moveInches(-63, 0.75, 15);
+        robot.moveInches(-58, 0.75, 15);
         //robot.rotate(90,0.15);
 
         //robot.moveInches(-10, .3, 15);

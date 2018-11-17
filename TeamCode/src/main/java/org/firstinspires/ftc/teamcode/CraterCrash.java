@@ -35,14 +35,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  *
+ *
  * This is a test Autonomous code to check the workings of the "moveInches" and "rotate" commands
  * in the 2018 HardwareJoeBots class.
  *
  */
 
-@Autonomous(name="Blue Crater Autonomous New", group="8513")
+@Autonomous(name="Crater Crash", group="8513")
 //@Disabled
-public class GraceBlueCraterAutonomousTest extends LinearOpMode {
+public class CraterCrash extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -68,19 +69,19 @@ public class GraceBlueCraterAutonomousTest extends LinearOpMode {
         waitForStart();
 
         robot.raiseLift();
-        robot.StrafeRobot(7,'L',10);
+        robot.StrafeRobot(10,'L',10);
 
-        robot.moveInches(18.5 , 0.65, 15);
-        robot.rotate(-84,0.25);
+        robot.moveInches(35 , 0.65, 15);
+        //robot.rotate(-84,0.25);
 
-        robot.moveInches(25, 0.65, 15);
-        robot.rotate(-45,0.25);
+        //robot.moveInches(25, 0.65, 15);
+        //robot.rotate(-45,0.25);
 
-        robot.moveInches(41, 0.65, 15);
-        robot.dropMarker();
+        //robot.moveInches(41, 0.65, 15);
+        //robot.dropMarker();
         //robot.rotate(-180,0.25);
 
-        robot.moveInches(-67, 0.85, 15);
+        //robot.moveInches(-67, 0.85, 15);
         //robot.rotate(90,0.15);
 
 

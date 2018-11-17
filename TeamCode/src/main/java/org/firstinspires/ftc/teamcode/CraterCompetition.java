@@ -35,14 +35,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  *
+ *
  * This is a test Autonomous code to check the workings of the "moveInches" and "rotate" commands
  * in the 2018 HardwareJoeBots class.
  *
  */
 
-@Autonomous(name="Red Depot Autonomous New", group="8513")
+@Autonomous(name="Crater Corner", group="8513")
 //@Disabled
-public class GraceRedDepotAutonomousTest extends LinearOpMode {
+public class CraterCompetition extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -67,29 +68,21 @@ public class GraceRedDepotAutonomousTest extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //Detaches robot from lander
         robot.raiseLift();
-        robot.StrafeRobot(7,'L', 10);
-        //robot.lowerLift();
+        robot.StrafeRobot(10,'L',10);
 
-        //Gets the robot to the depot and drops the marker
-        //robot.StrafeRobot(7,'R',10);
-        robot.moveInches(43, 0.75, 15);
-        robot.rotate(63,0.15);
-        robot.moveInches(13, 0.75, 15);
-        //robot.rotate(128,0.15);
-        //robot.moveInches(50, 0.75, 15);
+        robot.moveInches(18.5 , 0.65, 15);
+        robot.rotate(-84,0.25);
+
+        robot.moveInches(25, 0.65, 15);
+        robot.rotate(-45,0.25);
+
+        robot.moveInches(41, 0.65, 15);
         robot.dropMarker();
-        //robot.rotate(90,0.15);
+        //robot.rotate(-180,0.25);
 
-        //Gets robot from depot to crater
-        robot.moveInches(-63, 0.75, 15);
+        robot.moveInches(-67, 0.85, 15);
         //robot.rotate(90,0.15);
-
-        //robot.moveInches(-10, .3, 15);
-        //robot.rotate(90,0.15);
-
-        //robot.moveInches(30, .75, 15);
 
 
     }
