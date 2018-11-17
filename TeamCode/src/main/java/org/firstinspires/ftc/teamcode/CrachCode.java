@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 /**
  *
  * This is a code to crash into the crater for 45 points.
- *Test
+ *
  *
  */
 
