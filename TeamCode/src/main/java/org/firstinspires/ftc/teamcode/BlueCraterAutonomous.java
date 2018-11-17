@@ -70,7 +70,11 @@ public class BlueCraterAutonomous extends LinearOpMode {
         waitForStart();
 
         robot.lowerLift();
-        robot.moveInches(16.5, 0.65, 15);
+        robot.strafeInches(2,0.3,5);
+        robot.moveInches(2,0.75,5);
+        robot.strafeInches(-2,0.3,5);
+        robot.lowerLift();
+        robot.moveInches(14.5, 0.65, 15);
 
 
             //strafetime

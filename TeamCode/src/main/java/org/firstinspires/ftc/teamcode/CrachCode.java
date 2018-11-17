@@ -40,9 +40,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Blue Depot Autonomous 1", group="8513")
+@Autonomous(name="Crash Code", group="8513")
 //@Disabled
-public class GraceBlueDepotAutonomous extends LinearOpMode {
+public class CrachCode extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -71,18 +71,29 @@ public class GraceBlueDepotAutonomous extends LinearOpMode {
         robot.strafeInches(2,0.3,5);
         robot.moveInches(2,0.75,5);
         robot.strafeInches(-2,0.3,5);
+        robot.lowerLift();
+        robot.moveInches(40, 0.65, 15);
 
-        robot.moveInches(13, 0.75, 15);
-        robot.rotate(-87,0.15);
 
-        robot.moveInches(49, 0.75, 15);
-        robot.rotate(128,0.15);
+            //strafetime
+            //if: sensorDistance is <5
+            //then test for yellow
 
-        robot.moveInches(50, 0.75, 15);
+            //if yellow is true
+            //then sample
+            //else strafe while Sensordistance <5
+
+
+        /*robot.rotate(-84, 0.25);
+
+        robot.moveInches(50, 0.65, 15);
+        robot.rotate(-30, 0.25);
+
+        robot.moveInches(-35, 0.65, 15);
         robot.dropMarker();
+            //robot.rotate(-3,0.25);
 
-        robot.moveInches(-57, 0.75, 15);
-
+        robot.moveInches(-80, 0.85, 15);*/
 
 
 

@@ -77,8 +77,8 @@ public class HardwareJoeBot2018
             (WHEEL_DIAMETER_INCHES * 3.14159);
     static final double INTAKE_MOTOR_POWER = 0.4;
 
-    static final int LIFT_DOWN_POSITION = 0;
-    static final int LIFT_UP_POSITION = 8000;
+    static final int LIFT_DOWN_POSITION = 8000;
+    static final int LIFT_UP_POSITION = 0;
     static final double LIFT_POWER = 0.3;
 
 
@@ -402,6 +402,48 @@ public class HardwareJoeBot2018
      * to 0
      *
      */
+
+
+    public void strafeInches (double right, double power, int timeoutSec){
+        int newMotor1Target;
+        int newMotor2Target;
+        int newMotor3Target;
+        int newMotor4Target;
+
+        if(myOpMode.opModeIsActive()) {
+            newMotor1Target = motor0.getCurrentPosition() + (int) (right * COUNTS_PER_INCH);
+            newMotor2Target = motor1.getCurrentPosition() + (int) (right * COUNTS_PER_INCH);
+            newMotor3Target = motor2.getCurrentPosition() + (int) (right * COUNTS_PER_INCH);
+            newMotor4Target = motor3.getCurrentPosition() + (int) (right * COUNTS_PER_INCH);
+
+            newMotor1Target = -newMotor1Target;
+            newMotor2Target = -newMotor2Target;
+
+
+            motor0.setTargetPosition(newMotor1Target);
+            motor1.setTargetPosition(newMotor2Target);
+            motor2.setTargetPosition(newMotor3Target);
+            motor3.setTargetPosition(newMotor4Target);
+
+            setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            runtime.reset();
+
+
+            moveRobot(0, power, 0);
+
+            while (myOpMode.opModeIsActive() && (runtime.seconds() < timeoutSec) &&
+                    (motor0.isBusy() && motor1.isBusy() && motor2.isBusy() && motor3.isBusy())) {
+
+            }
+
+            stop();
+
+            setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        }
+    }
+
 
     private void resetAngle(){
 
