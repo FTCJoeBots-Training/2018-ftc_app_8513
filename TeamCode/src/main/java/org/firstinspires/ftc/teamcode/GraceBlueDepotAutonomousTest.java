@@ -40,9 +40,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Blue Depot Autonomous 2", group="8513")
+@Autonomous(name="Blue Depot Autonomous New", group="8513")
 //@Disabled
-public class GraceBlueDepotAutonomous2 extends LinearOpMode {
+public class GraceBlueDepotAutonomousTest extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -67,18 +67,29 @@ public class GraceBlueDepotAutonomous2 extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.moveInches(15 , 0.75, 15);
-        robot.rotate(87,0.15);
+        //Detaches robot from lander
+        robot.raiseLift();
+        robot.StrafeRobot(7,'L', 10);
+        //robot.lowerLift();
 
+        //Gets the robot to the depot and drops the marker
+        //robot.StrafeRobot(7,'R',10);
         robot.moveInches(43, 0.75, 15);
-        robot.rotate(-128,0.15);
-
-        robot.moveInches(50, 0.75, 15);
+        robot.rotate(63,0.15);
+        robot.moveInches(13, 0.75, 15);
+        //robot.rotate(128,0.15);
+        //robot.moveInches(50, 0.75, 15);
+        robot.dropMarker();
         //robot.rotate(90,0.15);
 
-        robot.moveInches(-57, 0.75, 15);
+        //Gets robot from depot to crater
+        robot.moveInches(-63, 0.75, 15);
         //robot.rotate(90,0.15);
 
+        //robot.moveInches(-10, .3, 15);
+        //robot.rotate(90,0.15);
+
+        //robot.moveInches(30, .75, 15);
 
 
     }
