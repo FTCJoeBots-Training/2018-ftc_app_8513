@@ -41,7 +41,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 
 @Autonomous(name="Blue Depot Autonomous 1", group="8513")
-//@Disabled
 public class GraceBlueDepotAutonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -54,10 +53,10 @@ public class GraceBlueDepotAutonomous extends LinearOpMode {
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
          */
-        robot.init(hardwareMap, this);
+        robot.init(hardwareMap,this);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Resetting Encoders");    //
+        telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
 
         robot.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -67,29 +66,23 @@ public class GraceBlueDepotAutonomous extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //Detaches robot from lander
-        robot.raiseLift();
-        robot.StrafeRobot(7,'L', 10);
-        //robot.lowerLift();
+        robot.lowerLift();
+        robot.strafeInches(2,0.3,5);
+        robot.moveInches(2,0.75,5);
+        robot.strafeInches(-2,0.3,5);
 
-        //Gets the robot to the depot and drops the marker
-        //robot.StrafeRobot(7,'R',10);
-        robot.moveInches(15, 0.75, 15);
+        robot.moveInches(13, 0.75, 15);
         robot.rotate(-87,0.15);
+
         robot.moveInches(49, 0.75, 15);
         robot.rotate(128,0.15);
+
         robot.moveInches(50, 0.75, 15);
         robot.dropMarker();
-        //robot.rotate(90,0.15);
 
-        //Gets robot from depot to crater
         robot.moveInches(-57, 0.75, 15);
-        //robot.rotate(90,0.15);
 
-        //robot.moveInches(-10, .3, 15);
-        //robot.rotate(90,0.15);
 
-        //robot.moveInches(30, .75, 15);
 
 
     }

@@ -42,9 +42,9 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  *
  */
 
-@Autonomous(name="Blue Depot Sampling", group="8513")
+@Autonomous(name="Grace Strafe Test", group="8513")
 //@Disabled
-public class GraceBlueDepotSampling extends LinearOpMode {
+public class GraceStrafeTest extends LinearOpMode {
 
     /* Declare OpMode members. */
     GraceHardwareJoeBot2018 robot = new GraceHardwareJoeBot2018();
@@ -69,62 +69,10 @@ public class GraceBlueDepotSampling extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //Moves the robot to far right mineral for sampling
-        //robot.rotate(15,0.15);
-        robot.moveInches(15, 0.3, 15);
-        robot.StrafeRobot(5,'L',5);
+        //move robot left 15 inches
+        robot.StrafeRobot(15,'L',15);
 
-        //robot.rotate(-75,0.15);
-        //robot.moveInches(5, 0.7, 15);
-
-        //Uses color sensor distance to detect a sample. If the sample is outside the range, strafe the robot to its left side
-        /*while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
-            //robot.moveInches(0, 0.3, 2);
-            //robot.rotate(0,0.15);
-            //robot.moveInches(5, 0.3, 15);
-
-
-            //robot.rotate(90,0.15);
-
-            //robot.moveInches(12, 0.3, 15);
-            //robot.rotate(90,0.15);
-
-            //robot.moveInches(12, 0.3, 15);
-            //robot.rotate(90,0.15);
-            //If the robot is outside the sensor range, stafe to the left
-            robot.StrafeRobot(5,'L',5);
-
-
-        }*/
-
-        //If the sample is found, use the color sensor to check the color. This code is not done yet, so I use stop command for now
-        robot.stop();
-
-        //Keep the robot move left again to see how reliable the move and distance sensor are
-        //robot.moveInches(0, 0.3, 2);
-        robot.StrafeRobot(5,'L',5);
-
-
-        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
-            //robot.moveInches(0, 0.3, 2);
-            //robot.StrafeRobot(5,'L',5);
-
-        //}
-
-        //robot.stop();
-
-        //Keep the robot move left again to see how reliable the move and distance sensor are
-        //robot.moveInches(0, 0.3, 2);
-        robot.StrafeRobot(5,'L',5);
-
-
-        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 3) {
-            //robot.moveInches(0, 0.3, 2);
-            //robot.StrafeRobot(5,'L',5);
-
-        //}
-
-        robot.stop();
-
+        //move robot left 15 inches
+        robot.StrafeRobot(15,'R',15);
     }
 }

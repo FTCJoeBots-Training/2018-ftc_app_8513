@@ -69,9 +69,14 @@ public class BlueCraterAutonomous extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        robot.moveInches(16.5, 0.65, 15);
+        robot.raiseLift();
+        robot.strafeInches(2,'L',5);
+        robot.moveInches(2,0.75,5);
+        robot.strafeInches(-2,'R',5);
+        robot.lowerLift();
+        robot.moveInches(14.5, 0.65, 15);
 
-        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
+
             //strafetime
             //if: sensorDistance is <5
             //then test for yellow
@@ -81,16 +86,20 @@ public class BlueCraterAutonomous extends LinearOpMode {
             //else strafe while Sensordistance <5
 
 
-            robot.rotate(-84, 0.25);
+        robot.rotate(-84, 0.25);
 
-            robot.moveInches(50, 0.65, 15);
-            robot.rotate(-30, 0.25);
+        robot.moveInches(50, 0.65, 15);
+        robot.rotate(-30, 0.25);
 
-            robot.moveInches(-35, 0.65, 15);
+        robot.moveInches(-35, 0.65, 15);
+        robot.dropMarker();
             //robot.rotate(-3,0.25);
 
-            robot.moveInches(-80, 0.85, 15);
+        robot.moveInches(-80, 0.85, 15);
+        robot.stop();
 
 
-        }
+
     }
+
+}

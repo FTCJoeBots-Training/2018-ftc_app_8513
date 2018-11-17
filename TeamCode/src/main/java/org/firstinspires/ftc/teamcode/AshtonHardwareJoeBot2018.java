@@ -48,7 +48,7 @@ public class AshtonHardwareJoeBot2018
     // Declare Sensors
     public BNO055IMU imu;                  // The IMU sensor object
     public ColorSensor sensorColor;
-    public DistanceSensor sensorDistance;
+    //public DistanceSensor sensorDistance;
 
 
     // Variables used for IMU tracking...
@@ -133,7 +133,7 @@ public class AshtonHardwareJoeBot2018
         sensorColor = hwMap.get(ColorSensor.class, "sensor_color_distance");
 
         // get a reference to the distance sensor that shares the same name.
-        sensorDistance = hwMap.get(DistanceSensor.class, "sensor_color_distance");
+        //sensorDistance = hwMap.get(DistanceSensor.class, "sensor_color_distance");
 
 
     }

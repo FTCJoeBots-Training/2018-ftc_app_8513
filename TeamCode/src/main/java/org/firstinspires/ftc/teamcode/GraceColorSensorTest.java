@@ -31,7 +31,9 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -42,12 +44,17 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
  *
  */
 
-@Autonomous(name="Blue Depot Sampling", group="8513")
+@Autonomous(name="Grace Color Sensor Test", group="8513")
 //@Disabled
-public class GraceBlueDepotSampling extends LinearOpMode {
+public class GraceColorSensorTest extends LinearOpMode {
 
     /* Declare OpMode members. */
     GraceHardwareJoeBot2018 robot = new GraceHardwareJoeBot2018();
+
+    ColorSensor sensorColor;
+    //DistanceSensor sensorDistance;
+    float hsvValues[] = {0F, 0F, 0F};
+
 
     @Override
     public void runOpMode() {
@@ -68,63 +75,22 @@ public class GraceBlueDepotSampling extends LinearOpMode {
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
+        while (opModeIsActive()) {
+            if (robot.IsGold()){
+                telemetry.addLine("gold mineral detected");
+                telemetry.addData("Alpha", sensorColor.alpha());
+                telemetry.addData("Red  ", sensorColor.red());
+                telemetry.addData("Green", sensorColor.green());
+                telemetry.addData("Blue ", sensorColor.blue());
+                telemetry.addData("Hue", hsvValues[0]);
+            }
+            else {
+                telemetry.addLine("Mineral is not gold");
+            }
+            telemetry.update();
 
-        //Moves the robot to far right mineral for sampling
-        //robot.rotate(15,0.15);
-        robot.moveInches(15, 0.3, 15);
-        robot.StrafeRobot(5,'L',5);
-
-        //robot.rotate(-75,0.15);
-        //robot.moveInches(5, 0.7, 15);
-
-        //Uses color sensor distance to detect a sample. If the sample is outside the range, strafe the robot to its left side
-        /*while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
-            //robot.moveInches(0, 0.3, 2);
-            //robot.rotate(0,0.15);
-            //robot.moveInches(5, 0.3, 15);
-
-
-            //robot.rotate(90,0.15);
-
-            //robot.moveInches(12, 0.3, 15);
-            //robot.rotate(90,0.15);
-
-            //robot.moveInches(12, 0.3, 15);
-            //robot.rotate(90,0.15);
-            //If the robot is outside the sensor range, stafe to the left
-            robot.StrafeRobot(5,'L',5);
-
-
-        }*/
-
-        //If the sample is found, use the color sensor to check the color. This code is not done yet, so I use stop command for now
-        robot.stop();
-
-        //Keep the robot move left again to see how reliable the move and distance sensor are
-        //robot.moveInches(0, 0.3, 2);
-        robot.StrafeRobot(5,'L',5);
-
-
-        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 5) {
-            //robot.moveInches(0, 0.3, 2);
-            //robot.StrafeRobot(5,'L',5);
-
-        //}
-
-        //robot.stop();
-
-        //Keep the robot move left again to see how reliable the move and distance sensor are
-        //robot.moveInches(0, 0.3, 2);
-        robot.StrafeRobot(5,'L',5);
-
-
-        //while (robot.sensorDistance.getDistance(DistanceUnit.INCH) > 3) {
-            //robot.moveInches(0, 0.3, 2);
-            //robot.StrafeRobot(5,'L',5);
-
-        //}
-
-        robot.stop();
-
+        }
+        telemetry.update();
     }
+
 }
