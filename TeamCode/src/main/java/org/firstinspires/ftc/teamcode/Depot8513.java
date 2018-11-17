@@ -36,7 +36,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 /**
  *
  * This is a test Autonomous code to check the workings of the "moveInches" and "rotate" commands
- * in the 2018 HardwareJoeBots class.
+ * in the 2018 HardwareJoeBots class. hi
  *
  */
 
