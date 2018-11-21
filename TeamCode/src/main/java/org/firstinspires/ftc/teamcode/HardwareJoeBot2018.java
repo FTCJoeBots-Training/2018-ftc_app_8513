@@ -79,7 +79,7 @@ public class HardwareJoeBot2018
 
     static final int LIFT_DOWN_POSITION = 0;
     static final int LIFT_UP_POSITION = 5300;
-    static final double LIFT_POWER = 0.3;
+    static final double LIFT_POWER = 0.5;
 
 
     static final int ELBOW_STOW_POS = 0;
@@ -227,6 +227,9 @@ public class HardwareJoeBot2018
         // Reset the cycle clock for the next pass.
         period.reset();
     }
+
+
+
 
 
     /***

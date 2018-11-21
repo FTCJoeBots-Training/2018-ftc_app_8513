@@ -67,9 +67,9 @@ public class GraceBlueDepotAutonomous extends LinearOpMode {
         waitForStart();
 
         robot.lowerLift();
-        robot.strafeInches(2,0.3,5);
+        //robot.strafeInches(2,0.3,5);
         robot.moveInches(2,0.75,5);
-        robot.strafeInches(-2,0.3,5);
+        //robot.strafeInches(-2,0.3,5);
 
         robot.moveInches(13, 0.75, 15);
         robot.rotate(-87,0.15);

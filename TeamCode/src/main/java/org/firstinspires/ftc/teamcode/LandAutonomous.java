@@ -41,9 +41,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Crater Corner", group="8513")
+@Autonomous(name="Only Landing Autonomous", group="8513")
 //@Disabled
-public class CraterCompetition extends LinearOpMode {
+public class LandAutonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -69,21 +69,6 @@ public class CraterCompetition extends LinearOpMode {
         waitForStart();
 
         robot.raiseLift();
-        robot.StrafeRobot(5,'L',10);
-
-        robot.moveInches(10 , 0.65, 15);
-        robot.rotate(-53,0.25);
-
-        robot.moveInches(48, 0.65, 15);
-        robot.rotate(-67,0.25);
-
-        robot.moveInches(50, 0.65, 15);
-        robot.dropMarker();
-        //robot.rotate(-180,0.25);
-
-        robot.moveInches(-63, 0.85, 15);
-        //robot.rotate(90,0.15);
-
 
     }
 

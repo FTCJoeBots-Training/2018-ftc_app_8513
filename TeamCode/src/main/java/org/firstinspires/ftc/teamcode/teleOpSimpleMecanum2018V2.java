@@ -27,43 +27,51 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * List of issues at Comp(1)-> https://docs.google.com/a/stjoebears.com/spreadsheets/d/1r_liipKBU7GHfONdxq9E6d4f7zikcCuXwDL2bsQfwm0/edit?usp=sharing
  *G-Sheet of time VS Heading for autonomous -> https://docs.google.com/a/stjoebears.com/spreadsheets/d/1pqv0iN94fFd5KvX1YIWP7z39HgpURXsscn0zPujs1q4/edit?usp=sharing
 */
-@TeleOp(name="Test 8513", group="TeleOp")
+@TeleOp(name="Test 8513 2", group="TeleOp")
 
-public class teleOpSimpleMecanum2018 extends LinearOpMode {
+public class teleOpSimpleMecanum2018V2 extends LinearOpMode {
 
     HardwareJoeBot2018 robot = new HardwareJoeBot2018();
 
-    @Override
+
+    boolean bCurrStateF;
+    boolean bPrevStateF;
+    boolean bCurrStateG;
+    boolean bPrevStateG;
+    boolean bIntakeOn;
+    double forward;
+    double clockwise;
+    double right;
+    double shoulderPower;
+    double elbowPower;
+    double maxShoulderPower = 0.5;
+    double maxElbowPower = 0.5;
+
+    //boolean variables for ButtonStates
+    boolean bCurrStateLB = false;
+    boolean bPrevStateLB = false;
+    boolean bCurrStateRB = false;
+    boolean bPrevStateRB = false;
+    boolean bCurrStateA = false;
+    boolean bPrevStateA = false;
+    boolean bCurrStateB = false;
+    boolean bPrevStateB = false;
+    boolean bCurrStateX = false;
+    boolean bPrevStateX = false;
+    boolean bCurrStateY = false;
+    boolean bPrevStateY = false;
+    boolean bCurrStateDPD = false;
+    boolean bPrevStateDPD = false;
+    boolean bCurrStateDPU = false;
+    boolean bPrevStateDPU = false;
+
+   @Override
     public void runOpMode() throws InterruptedException {
 
         robot.init(hardwareMap, this);
 
 
-        double forward;
-        double clockwise;
-        double right;
-        double shoulderPower;
-        double elbowPower;
-        double maxShoulderPower = 0.5;
-        double maxElbowPower = 0.5;
 
-        //boolean variables for ButtonStates
-        boolean bCurrStateLB = false;
-        boolean bPrevStateLB = false;
-        boolean bCurrStateRB = false;
-        boolean bPrevStateRB = false;
-        boolean bCurrStateA = false;
-        boolean bPrevStateA = false;
-        boolean bCurrStateB = false;
-        boolean bPrevStateB = false;
-        boolean bCurrStateX = false;
-        boolean bPrevStateX = false;
-        boolean bCurrStateY = false;
-        boolean bPrevStateY = false;
-        boolean bCurrStateDPD = false;
-        boolean bPrevStateDPD = false;
-        boolean bCurrStateDPU = false;
-        boolean bPrevStateDPU = false;
 
 
         waitForStart();
@@ -87,26 +95,40 @@ public class teleOpSimpleMecanum2018 extends LinearOpMode {
 
 
 
+//--------------------------------------------------------------------------------------//
 
-            bCurrStateLB = gamepad2.left_bumper;
-            if ((bCurrStateLB == true) && (bCurrStateLB != bPrevStateLB)) {
-                // Left bumper has been pressed. We should set intake to reverse
-                // also, if Intake is currently running, and running in reverse, we should stop it
+            // Toggle Intake  On/Off
 
-                robot.toggleIntake("reverse");
+            bCurrStateB = gamepad2.left_bumper;
+
+            // check for button state transitions.
+            if ((bCurrStateF == true) && (bCurrStateF != bPrevStateF)) {
+
+                bIntakeOn = !bIntakeOn;
 
             }
-            bPrevStateLB = bCurrStateLB;
+            bPrevStateF = bCurrStateF;
 
-            bCurrStateRB = gamepad2.right_bumper;
-            if ((bCurrStateRB == true) && (bCurrStateRB != bPrevStateRB)) {
-                // Left bumper has been pressed. We should set intake to reverse
-                // also, if Intake is currently running, and running in reverse, we should stop it
-
+            if (bIntakeOn == true) {
                 robot.toggleIntake("forward");
+            } else {
+                robot.intakeMotor.setPower(0);
 
             }
-            bPrevStateRB = bCurrStateRB;
+            telemetry.addLine("intake motor");
+            telemetry.update();
+
+
+//--------------------------------------------------------------------------------------//
+            // Toggle Intake Direction
+
+            bCurrStateG = gamepad2.right_bumper;
+            if ((bCurrStateG == true) && (bCurrStateG!=bPrevStateG)) {
+                robot.toggleIntake("reverse");
+            }
+            bPrevStateG = bCurrStateG;
+            //--------------------------------------------------------------------------------------//
+
 
             bCurrStateDPD = gamepad2.dpad_down;
             if ((bCurrStateDPD == true) && (bCurrStateDPD != bPrevStateDPD)) {
