@@ -61,8 +61,8 @@ public class gregMotorTest extends LinearOpMode {
         elbowMotor      = hardwareMap.dcMotor.get("elbowMotor");
         intakeMotor     = hardwareMap.dcMotor.get("intakeMotor");
 
-        markerServo     = hardwareMap.servo.get("markerServo");
-        mineralServo    = hardwareMap.servo.get("mineralServo");
+        markerServo     = hardwareMap.get(Servo.class, "markerServo");
+        mineralServo    = hardwareMap.get(Servo.class, "mineralServo");
 
         liftMotor.setDirection(DcMotor.Direction.FORWARD);
         shoulderMotor.setDirection(DcMotor.Direction.FORWARD);

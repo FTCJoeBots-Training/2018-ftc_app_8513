@@ -1,4 +1,5 @@
 /* Copyright (c) 2017 FIRST. All rights reserved.
+
  *
  * Redistribution and use in source and binary forms, with or without modification,
  * are permitted (subject to the limitations in the disclaimer below) provided that
@@ -45,10 +46,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class Test extends LinearOpMode {
 
     /* Declare OpMode members. */
-    TestHardwareJoeBots      robot   = new TestHardwareJoeBots();
+    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
 
     @Override
     public void runOpMode() {
+
+
 
         /*
          * Initialize the drive system variables.
@@ -57,7 +60,7 @@ public class Test extends LinearOpMode {
         robot.init(hardwareMap, this);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Resetting Encoders");    //
+        telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
 
         robot.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -67,8 +70,11 @@ public class Test extends LinearOpMode {
         waitForStart();
 
 
-        robot.moveInches(5,1,5);
-        robot.strafeInches(5, 1,15);
+
+
+        robot.dropMarker();
+        //robot.moveInches(5,1,5);
+        //robot.strafeInches(5, 1,15);
 
         // Wait for the game to start (driver presses PLAY)
 

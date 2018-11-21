@@ -50,7 +50,7 @@ public class TestHardwareJoeBots
     public BNO055IMU imu;                  // The IMU sensor object
 
     public ColorSensor sensorColor;
-    public DistanceSensor sensorDistance;
+    //public DistanceSensor sensorDistance;
 
     // Variables used for IMU tracking...
     public Orientation angles;
@@ -381,6 +381,7 @@ public class TestHardwareJoeBots
             while (myOpMode.opModeIsActive() && (runtime.seconds() < timeoutSec) &&
                     (motor0.isBusy() && motor1.isBusy() && motor2.isBusy() && motor3.isBusy())) {
 
+
             }
 
             stop();
@@ -400,6 +401,8 @@ public class TestHardwareJoeBots
         globalAngle = 0;
 
     }
+
+
 
     /**
      *
@@ -433,10 +436,29 @@ public class TestHardwareJoeBots
 
 
 
-    public void getAngleLocation(){
+    int angleDifference;
 
-  //      if getAngle()
+    public void setAngleDifference(double angleDifference) {
+        angleDifference = 45-getAngle();
+        if (angleDifference < 0) angleDifference = -angleDifference;
     }
+
+
+    public void checkAngle(){
+        if (getAngle() < 45){
+
+            rotate(angleDifference, 0.15);
+        } else {
+            rotate(-angleDifference, 0.15);
+
+
+        }
+
+    }
+
+
+
+
 
     /**
      *
@@ -507,6 +529,8 @@ public class TestHardwareJoeBots
             }
 
         }
+
+
 
 
 

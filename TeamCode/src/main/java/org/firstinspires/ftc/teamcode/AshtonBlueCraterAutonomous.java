@@ -85,7 +85,7 @@ public class AshtonBlueCraterAutonomous extends LinearOpMode {
 
         robot.moveInches(50, 0.65, 15);
         robot.rotate(-30, 0.25);
-
+ 
         robot.moveInches(-35, 0.65, 15);
         //robot.rotate(-3,0.25);
 

@@ -45,7 +45,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class GraceBlueDepotAutonomous2 extends LinearOpMode {
 
     /* Declare OpMode members. */
-    GraceHardwareJoeBot2018      robot   = new GraceHardwareJoeBot2018();
+    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
 
     @Override
     public void runOpMode() {
