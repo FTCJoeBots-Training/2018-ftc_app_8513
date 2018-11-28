@@ -71,20 +71,21 @@ public class CraterCompetition3 extends LinearOpMode {
         robot.raiseLift();
         robot.StrafeRobot(3.5,'L',10);
 
-        robot.rotate(35,0.75);
+        robot.rotate(30,0.75);
         robot.moveInches(30, 0.75, 15);
-        robot.moveInches(-23,0.75, 15);
+        robot.moveInches(-16,0.75, 15);
 
         //robot.moveInches(35, 0.75, 15);
-        robot.rotate(-95,0.5);
+        robot.rotate(-97,0.5);
 
-        robot.moveInches(45, 0.65, 15);
-        robot.rotate(-40,0.5);
+        robot.moveInches(56, 0.65, 15);
+        robot.rotate(-45,0.5);
         //robot.rotate(-180,0.25);
 
-        robot.moveInches(33, 0.75, 15);
+        robot.moveInches(43, 0.75, 15);
         robot.dropMarker();
-        robot.moveInches(-63, 0.75, 15);
+        robot.rotate(-3,0.5);
+        robot.moveInches(-67, 0.75, 15);
         //robot.rotate(90,0.15);
 
 

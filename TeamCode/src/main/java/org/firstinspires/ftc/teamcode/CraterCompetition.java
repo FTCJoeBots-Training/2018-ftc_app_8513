@@ -71,9 +71,9 @@ public class CraterCompetition extends LinearOpMode {
         robot.raiseLift();
         robot.StrafeRobot(3.5,'L',10);
 
-        robot.rotate(-15,0.75);
+        robot.rotate(-9,0.75);
         robot.moveInches(27, 0.75, 15);
-        robot.rotate(-76,0.25);
+        robot.rotate(-73,0.25);
 
         robot.moveInches(35, 0.75, 15);
         robot.rotate(-30,0.25);

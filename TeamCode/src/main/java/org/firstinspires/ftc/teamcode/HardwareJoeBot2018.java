@@ -78,8 +78,8 @@ public class HardwareJoeBot2018
     static final double INTAKE_MOTOR_POWER = 0.4;
 
     static final int LIFT_DOWN_POSITION = 0;
-    static final int LIFT_UP_POSITION = 8335;
-    static final double LIFT_POWER = 0.5;
+    static final int LIFT_UP_POSITION = 12700;
+    static final double LIFT_POWER = 1;
 
 
     static final int ELBOW_STOW_POS = 0;
