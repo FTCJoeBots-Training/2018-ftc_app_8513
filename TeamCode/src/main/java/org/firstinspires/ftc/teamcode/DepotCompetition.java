@@ -83,8 +83,11 @@ public class DepotCompetition extends LinearOpMode {
         //robot.rotate(90,0.15);
 
         //Gets robot from depot to crater
+        robot.rotate(3,0.5);
         robot.moveInches(-64, 0.75, 15);
         //robot.rotate(90,0.15);
+
+        robot.lowerLift();
 
         //robot.moveInches(-10, .3, 15);
         //robot.rotate(90,0.15);
