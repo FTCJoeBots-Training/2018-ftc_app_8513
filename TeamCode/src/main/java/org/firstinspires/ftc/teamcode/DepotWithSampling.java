@@ -32,6 +32,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
  *
@@ -40,12 +41,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Depot Gold Left", group="8513")
+@Autonomous(name="Sampling Depot", group="8513")
 //@Disabled
-public class DepotCompetition extends LinearOpMode {
+public class DepotWithSampling extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
+    HardwareJoeBot2018 robot = new HardwareJoeBot2018();
+    int gold = -1;
+    ElapsedTime runtime = new ElapsedTime();
 
     @Override
     public void runOpMode() {
@@ -69,31 +72,82 @@ public class DepotCompetition extends LinearOpMode {
 
         //Detaches robot from lander
         robot.raiseLift();
-        robot.StrafeRobot(3.5,'L', 10);
-        robot.rotate(-15,0.75);
-        //robot.lowerLift();
+        robot.StrafeRobot(3.5, 'L', 10);
+        robot.moveInches(5,0.5,15);
 
-        //Gets the robot to the depot and drops the marker
-        robot.moveInches(43, 0.75, 15);
-        robot.rotate(62,0.25);
-        robot.moveInches(17, 0.75, 15);
-        //robot.rotate(128,0.15);
-        //robot.moveInches(50, 0.75, 15);
-        robot.dropMarker();
-        //robot.rotate(90,0.15);
+        //Detect gold mineral
+        runtime.reset();
+        while (opModeIsActive() && runtime.seconds() < 5 && gold < 0) {
+            gold = robot.tflocate();
+            sleep (400);
+        }
 
-        //Gets robot from depot to crater
-        robot.rotate(3,0.5);
-        robot.moveInches(-64, 0.75, 15);
-        //robot.rotate(90,0.15);
 
-        robot.lowerLift();
+        if (gold == 0) {
+            robot.rotate(-15, 0.75);
 
-        //robot.moveInches(-10, .3, 15);
-        //robot.rotate(90,0.15);
+            //Gets the robot to the depot and drops the marker
+            robot.rotate(-15,0.75);
+            //robot.lowerLift();
 
-        //robot.moveInches(30, .75, 15);
+            //Gets the robot to the depot and drops the marker
+            robot.moveInches(36, 0.75, 15);
+            robot.rotate(62,0.25);
+            robot.moveInches(17, 0.75, 15);
+            robot.dropMarker();
 
+            //Gets robot from depot to crater
+            robot.rotate(3,0.5);
+            robot.moveInches(-64, 0.75, 15);
+
+        } else if (gold == 1) {
+
+            robot.rotate(7,0.75);
+            robot.moveInches(17, 0.75, 15);
+            robot.moveInches(-10,0.75, 15);
+
+            robot.rotate(-80,0.5);
+
+            robot.moveInches(47, 0.65, 15);
+            robot.rotate(97,0.5);
+
+            robot.moveInches(39, 0.75, 15);
+            robot.dropMarker();
+            robot.rotate(3, 0.5);
+            robot.moveInches(-61, 0.75, 15);
+        } else if (gold == 2) {
+
+            robot.rotate(30,0.75);
+            robot.moveInches(23, 0.75, 15);
+            robot.moveInches(-18,0.75, 15);
+
+            robot.rotate(-97,0.5);
+
+            robot.moveInches(53, 0.65, 15);
+            robot.rotate(99,0.5);
+
+            robot.moveInches(46, 0.75, 15);
+            robot.dropMarker();
+            robot.rotate(3,0.5);
+            robot.moveInches(-67, 0.75, 15);
+
+        }
+        else{
+            robot.rotate(30,0.75);
+            robot.moveInches(23, 0.75, 15);
+            robot.moveInches(-18,0.75, 15);
+
+            robot.rotate(-97,0.5);
+
+            robot.moveInches(53, 0.65, 15);
+            robot.rotate(97,0.5);
+
+            robot.moveInches(46, 0.75, 15);
+            robot.dropMarker();
+            robot.rotate(3,0.5);
+            robot.moveInches(-67, 0.75, 15);
+        }
+            robot.lowerLift();
 
     }
 
