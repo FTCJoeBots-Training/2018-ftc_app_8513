@@ -68,21 +68,22 @@ public class CraterCompetition extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        //If mineral is in left position
         robot.raiseLift();
         robot.StrafeRobot(9,'L',10);
+        robot.rotate(-76,0.75);
+        robot.moveInches(27 , 0.75, 15);
+        robot.rotate(-76,0.25);
 
-        robot.moveInches(10 , 0.65, 15);
-        robot.rotate(-87,0.25);
+        robot.moveInches(35, 0.75, 15);
+        robot.rotate(-30,0.25);
 
-        robot.moveInches(48, 0.65, 15);
-        //robot.rotate(-43,0.25);
-
-        //robot.moveInches(50, 0.65, 15);
+        robot.moveInches(30, 0.65, 15);
         robot.dropMarker();
-        //robot.rotate(-180,0.25);
 
-        robot.moveInches(-65, 0.85, 15);
-        //robot.rotate(90,0.15);
+
+        robot.moveInches(-63, 0.75, 15);
+
 
 
     }

@@ -35,14 +35,15 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  *
+ *
  * This is a test Autonomous code to check the workings of the "moveInches" and "rotate" commands
  * in the 2018 HardwareJoeBots class.
  *
  */
 
-@Autonomous(name="Blue Crater Autonomous", group="8513")
+@Autonomous(name="Crater Corner", group="8513")
 //@Disabled
-public class GraceBlueCraterAutonomous extends LinearOpMode {
+public class CraterCompetition3 extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -68,14 +69,20 @@ public class GraceBlueCraterAutonomous extends LinearOpMode {
         waitForStart();
 
         //If mineral is in left position
-        robot.moveInches(16.5 , 0.65, 15);
-        robot.rotate(-84,0.25);
+        robot.raiseLift();
+        robot.StrafeRobot(3.5,'L',10);
+        robot.rotate(35,0.75);
+        robot.moveInches(30 , 0.75, 15);
+        robot.moveInches(-23 , 0.75, 15);
 
-        robot.moveInches(49.6, 0.65, 15);
-        robot.rotate(-30,0.25);
+        robot.rotate(-95,0.5);
 
-        robot.moveInches(35, 0.65, 15);
-        robot.moveInches(-60, 0.85, 15);
+        robot.moveInches(45, 0.65, 15);
+        robot.rotate(-40,0.5);
+        robot.moveInches(33, 0.75, 15);
+        robot.dropMarker();
+
+        robot.moveInches(-63, 0.75, 15);
 
 
 
