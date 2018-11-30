@@ -41,12 +41,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Crater Gold Left", group="8513")
+@Autonomous(name="Crater Corner", group="8513")
 //@Disabled
-public class CraterCompetition extends LinearOpMode {
+public class CraterCompetitionColoma extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
+    int gold;
 
     @Override
     public void runOpMode() {
@@ -71,20 +72,71 @@ public class CraterCompetition extends LinearOpMode {
         robot.raiseLift();
         robot.StrafeRobot(3.5,'L',10);
 
-        robot.rotate(-9,0.75);
-        robot.moveInches(27, 0.75, 15);
-        robot.moveInches(-4,0.6,15);
-        robot.rotate(-73,0.25);
+        gold = robot.tflocate();
 
-        robot.moveInches(36, 0.75, 15);
-        robot.rotate(-42,0.25);
+        // If gold mineral is on left
+        if (gold == 0) {
+            robot.rotate(-9,0.75);
+            robot.moveInches(27, 0.75, 15);
+            robot.moveInches(-4,0.6,15);
+            robot.rotate(-73,0.25);
 
-        robot.moveInches(33, 0.65, 15);
-        robot.dropMarker();
-        //robot.rotate(-180,0.25);
+            robot.moveInches(36, 0.75, 15);
+            robot.rotate(-42,0.25);
 
-        robot.moveInches(-63, 0.75, 15);
-        //robot.rotate(90,0.15);
+            robot.moveInches(33, 0.65, 15);
+            robot.dropMarker();
+
+            robot.moveInches(-63, 0.75, 15);
+        }
+
+        // If gold mineral is in the middle
+        else if (gold == 1) {
+            robot.rotate(9,0.75);
+            robot.moveInches(24, 0.75, 15);
+            robot.moveInches(-10,0.75, 15);
+
+            robot.rotate(-80,0.5);
+
+            robot.moveInches(49, 0.65, 15);
+            robot.rotate(-45,0.5);
+
+            robot.moveInches(33, 0.75, 15);
+            robot.dropMarker();
+            robot.rotate(-3, 0.5);
+            robot.moveInches(-63, 0.75, 15);
+        }
+
+        // If gold mineral is on right
+        else if (gold == 2){
+            robot.rotate(30,0.75);
+            robot.moveInches(30, 0.75, 15);
+            robot.moveInches(-16,0.75, 15);
+
+            robot.rotate(-97,0.5);
+
+            robot.moveInches(56, 0.65, 15);
+            robot.rotate(-42,0.5);
+
+            robot.moveInches(43, 0.75, 15);
+            robot.dropMarker();
+            robot.rotate(-3,0.5);
+            robot.moveInches(-67, 0.75, 15);
+        }
+        else{
+            robot.rotate(-9, 0.75);
+            robot.moveInches(27, 0.75, 15);
+            robot.rotate(-73, 0.25);
+
+            robot.moveInches(35, 0.75, 15);
+            robot.rotate(-30, 0.25);
+
+            robot.moveInches(30, 0.65, 15);
+            robot.dropMarker();
+
+            robot.moveInches(-63, 0.75, 15);
+        }
+        robot.lowerLift();
 
 
     }

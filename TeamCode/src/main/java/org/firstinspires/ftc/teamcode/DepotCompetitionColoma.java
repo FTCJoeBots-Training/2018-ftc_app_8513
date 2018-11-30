@@ -35,18 +35,18 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  *
- *
  * This is a test Autonomous code to check the workings of the "moveInches" and "rotate" commands
  * in the 2018 HardwareJoeBots class.
  *
  */
 
-@Autonomous(name="Crater Gold Left", group="8513")
+@Autonomous(name="Depot Corner", group="8513")
 //@Disabled
-public class CraterCompetition extends LinearOpMode {
+public class DepotCompetitionColoma extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
+    HardwareJoeBot2018 robot = new HardwareJoeBot2018();
+    int gold;
 
     @Override
     public void runOpMode() {
@@ -68,24 +68,73 @@ public class CraterCompetition extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
+        //Detaches robot from lander
         robot.raiseLift();
-        robot.StrafeRobot(3.5,'L',10);
+        robot.StrafeRobot(3.5, 'L', 10);
 
-        robot.rotate(-9,0.75);
-        robot.moveInches(27, 0.75, 15);
-        robot.moveInches(-4,0.6,15);
-        robot.rotate(-73,0.25);
+        //Detect gold mineral
+        gold = robot.tflocate();
+        if (gold == 0) {
+            robot.rotate(-15, 0.75);
 
-        robot.moveInches(36, 0.75, 15);
-        robot.rotate(-42,0.25);
+            //Gets the robot to the depot and drops the marker
+            robot.moveInches(43, 0.75, 15);
+            robot.rotate(62, 0.25);
+            robot.moveInches(17, 0.75, 15);
+            robot.dropMarker();
 
-        robot.moveInches(33, 0.65, 15);
-        robot.dropMarker();
-        //robot.rotate(-180,0.25);
+            //Gets robot from depot to crater
+            robot.rotate(3, 0.5);
+            robot.moveInches(-64, 0.75, 15);
 
-        robot.moveInches(-63, 0.75, 15);
-        //robot.rotate(90,0.15);
+        } else if (gold == 1) {
 
+            robot.rotate(7, 0.75);
+            robot.moveInches(24, 0.75, 15);
+            robot.moveInches(-10, 0.75, 15);
+
+            robot.rotate(-80, 0.5);
+
+            robot.moveInches(47, 0.65, 15);
+            robot.rotate(99, 0.5);
+
+            robot.moveInches(39, 0.75, 15);
+            robot.dropMarker();
+            robot.rotate(3, 0.5);
+            robot.moveInches(-61, 0.75, 15);
+        } else if (gold == 2) {
+
+            robot.rotate(30, 0.75);
+            robot.moveInches(30, 0.75, 15);
+            robot.moveInches(-18, 0.75, 15);
+
+            robot.rotate(-97, 0.5);
+
+            robot.moveInches(53, 0.65, 15);
+            robot.rotate(99, 0.5);
+
+            robot.moveInches(46, 0.75, 15);
+            robot.dropMarker();
+            robot.rotate(3, 0.5);
+            robot.moveInches(-67, 0.75, 15);
+
+        }
+        else{
+            robot.rotate(30, 0.75);
+            robot.moveInches(30, 0.75, 15);
+            robot.moveInches(-18, 0.75, 15);
+
+            robot.rotate(-97, 0.5);
+
+            robot.moveInches(53, 0.65, 15);
+            robot.rotate(99, 0.5);
+
+            robot.moveInches(46, 0.75, 15);
+            robot.dropMarker();
+            robot.rotate(3, 0.5);
+            robot.moveInches(-67, 0.75, 15);
+        }
+            robot.lowerLift();
 
     }
 
