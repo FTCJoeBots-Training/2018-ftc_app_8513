@@ -45,7 +45,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  */
 
 @Autonomous(name="Mecanum Square Testing", group="Testing")
-//@Disabled
+@Disabled
 public class autoTestMecanumMoveCommands extends LinearOpMode {
 
     /* Declare OpMode members. */

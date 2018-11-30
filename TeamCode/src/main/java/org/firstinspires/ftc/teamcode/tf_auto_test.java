@@ -30,6 +30,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -47,7 +48,7 @@ import java.util.List;
  */
 
 @Autonomous(name="tf_auto_test_orig" , group="Testing")
-//@Disabled
+@Disabled
 public class tf_auto_test extends LinearOpMode {
 
     /* Declare OpMode members. */

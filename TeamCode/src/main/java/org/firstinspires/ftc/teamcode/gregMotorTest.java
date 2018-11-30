@@ -39,7 +39,7 @@ import com.qualcomm.robotcore.hardware.Servo;
  * Sample code to test mapping of one motor to the gamepad.
  */
 @TeleOp(name = "READ Encoder Values", group = "Testing")
-//@Disabled
+@Disabled
 public class gregMotorTest extends LinearOpMode {
 
 
