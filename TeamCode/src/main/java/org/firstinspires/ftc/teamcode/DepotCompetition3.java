@@ -41,9 +41,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Crater Gold Center", group="8513")
+@Autonomous(name="Depot Gold Right", group="8513")
 //@Disabled
-public class CraterCompetition2 extends LinearOpMode {
+public class DepotCompetition3 extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
@@ -71,22 +71,24 @@ public class CraterCompetition2 extends LinearOpMode {
         robot.raiseLift();
         robot.StrafeRobot(3.5,'L',10);
 
-        robot.rotate(9,0.75);
-        robot.moveInches(24, 0.75, 15);
-        robot.moveInches(-10,0.75, 15);
+        robot.rotate(30,0.75);
+        robot.moveInches(30, 0.75, 15);
+        robot.moveInches(-18,0.75, 15);
 
         //robot.moveInches(35, 0.75, 15);
-        robot.rotate(-80,0.5);
+        robot.rotate(-97,0.5);
 
-        robot.moveInches(49, 0.65, 15);
-        robot.rotate(-45,0.5);
+        robot.moveInches(53, 0.65, 15);
+        robot.rotate(99,0.5);
         //robot.rotate(-180,0.25);
 
-        robot.moveInches(33, 0.75, 15);
+        robot.moveInches(46, 0.75, 15);
         robot.dropMarker();
-        robot.rotate(-3, 0.5);
-        robot.moveInches(-63, 0.75, 15);
+        robot.rotate(3,0.5);
+        robot.moveInches(-67, 0.75, 15);
         //robot.rotate(90,0.15);
+
+        robot.lowerLift();
 
 
     }

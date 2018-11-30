@@ -70,6 +70,8 @@ public class LandAutonomous extends LinearOpMode {
 
         robot.raiseLift();
 
+        robot.StrafeRobot(4.5,'L',10);
+
     }
 
 }

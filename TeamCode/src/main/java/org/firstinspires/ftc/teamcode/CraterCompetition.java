@@ -41,7 +41,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Crater Corner", group="8513")
+@Autonomous(name="Crater Gold Left", group="8513")
 //@Disabled
 public class CraterCompetition extends LinearOpMode {
 
@@ -68,22 +68,22 @@ public class CraterCompetition extends LinearOpMode {
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
 
-        //If mineral is in left position
         robot.raiseLift();
-        robot.StrafeRobot(9,'L',10);
-        robot.rotate(-76,0.75);
-        robot.moveInches(27 , 0.75, 15);
-        robot.rotate(-76,0.25);
+        robot.StrafeRobot(3.5,'L',10);
+
+        robot.rotate(-9,0.75);
+        robot.moveInches(27, 0.75, 15);
+        robot.rotate(-73,0.25);
 
         robot.moveInches(35, 0.75, 15);
         robot.rotate(-30,0.25);
 
         robot.moveInches(30, 0.65, 15);
         robot.dropMarker();
-
+        //robot.rotate(-180,0.25);
 
         robot.moveInches(-63, 0.75, 15);
-
+        //robot.rotate(90,0.15);
 
 
     }

@@ -31,22 +31,27 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
+
+import java.util.List;
 
 /**
- *
  *
  * This is a test Autonomous code to check the workings of the "moveInches" and "rotate" commands
  * in the 2018 HardwareJoeBots class.
  *
  */
 
-@Autonomous(name="Crater Gold Center", group="8513")
+@Autonomous(name="tf_auto_test_orig" , group="Testing")
 //@Disabled
-public class CraterCompetition2 extends LinearOpMode {
+public class tf_auto_test extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareJoeBot2018      robot   = new HardwareJoeBot2018();
+    HardwareJoeBot2018 robot = new HardwareJoeBot2018();
 
     @Override
     public void runOpMode() {
@@ -55,6 +60,8 @@ public class CraterCompetition2 extends LinearOpMode {
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
          */
+
+        //Vuforia initialization happens in here:
         robot.init(hardwareMap, this);
 
         // Send telemetry message to signify robot waiting;
@@ -62,33 +69,48 @@ public class CraterCompetition2 extends LinearOpMode {
         telemetry.update();
 
         robot.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
         robot.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
+        //Initialize position to an unknown state
+        int position=-1;
 
-        robot.raiseLift();
-        robot.StrafeRobot(3.5,'L',10);
+        //This is a boolean that we'll use to figure out if we've successfully detected gold
+        boolean found_gold = false;
 
-        robot.rotate(9,0.75);
-        robot.moveInches(24, 0.75, 15);
-        robot.moveInches(-10,0.75, 15);
+        //while we haven't found gold, loop.....consider putting a timeout in here
+        while (!found_gold) {
+            telemetry.addLine("calling tflocate()");
+            telemetry.update();
+            sleep(400);
 
-        //robot.moveInches(35, 0.75, 15);
-        robot.rotate(-80,0.5);
+            ///Call our tflocate method to find the gold mineral
+            position = robot.tflocate();
 
-        robot.moveInches(49, 0.65, 15);
-        robot.rotate(-45,0.5);
-        //robot.rotate(-180,0.25);
 
-        robot.moveInches(33, 0.75, 15);
-        robot.dropMarker();
-        robot.rotate(-3, 0.5);
-        robot.moveInches(-63, 0.75, 15);
-        //robot.rotate(90,0.15);
+            // If we've successfully located gold, then do this:
+            if (position > -1)
+            {
+                //Set found_gold here to true to break the loop
+                found_gold=true;
+                telemetry.addLine("Found Gold");
+                telemetry.update();
+                sleep(1000);
+            }
+            telemetry.addLine("Sleeping");
+            telemetry.update();
+            sleep(1000);
+        }
+        //deactivate tensor flow to free up resources and so we don't crash the application
+        robot.tfod.deactivate();
+
+
+        //  This reports position (0 - left, 1 - center, 2- right)
+        telemetry.addData("Position is:", position);
+        telemetry.update();
 
 
     }
-
 }

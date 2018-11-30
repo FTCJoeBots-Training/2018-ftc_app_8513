@@ -40,7 +40,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  *
  */
 
-@Autonomous(name="Depot Corner", group="8513")
+@Autonomous(name="Depot Gold Left", group="8513")
 //@Disabled
 public class DepotCompetition extends LinearOpMode {
 
@@ -69,11 +69,11 @@ public class DepotCompetition extends LinearOpMode {
 
         //Detaches robot from lander
         robot.raiseLift();
-        robot.StrafeRobot(9,'L', 10);
+        robot.StrafeRobot(3.5,'L', 10);
+        robot.rotate(-15,0.75);
         //robot.lowerLift();
 
         //Gets the robot to the depot and drops the marker
-        //robot.StrafeRobot(7,'R',10);
         robot.moveInches(43, 0.75, 15);
         robot.rotate(62,0.25);
         robot.moveInches(17, 0.75, 15);
@@ -83,8 +83,11 @@ public class DepotCompetition extends LinearOpMode {
         //robot.rotate(90,0.15);
 
         //Gets robot from depot to crater
+        robot.rotate(3,0.5);
         robot.moveInches(-64, 0.75, 15);
         //robot.rotate(90,0.15);
+
+        robot.lowerLift();
 
         //robot.moveInches(-10, .3, 15);
         //robot.rotate(90,0.15);
