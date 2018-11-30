@@ -71,10 +71,11 @@ public class DepotCompetitionColoma extends LinearOpMode {
         //Detaches robot from lander
         robot.raiseLift();
         robot.StrafeRobot(3.5, 'L', 10);
+        robot.moveRobot(7,0.5,15);
 
         //Detect gold mineral
         gold = robot.tflocate();
-        if (gold == 0) {
+        if (gold == 1) {
             robot.rotate(-15, 0.75);
 
             //Gets the robot to the depot and drops the marker
@@ -87,7 +88,7 @@ public class DepotCompetitionColoma extends LinearOpMode {
             robot.rotate(3, 0.5);
             robot.moveInches(-64, 0.75, 15);
 
-        } else if (gold == 1) {
+        } else if (gold == 0) {
 
             robot.rotate(7, 0.75);
             robot.moveInches(24, 0.75, 15);

@@ -71,11 +71,12 @@ public class CraterCompetitionColoma extends LinearOpMode {
 
         robot.raiseLift();
         robot.StrafeRobot(3.5,'L',10);
+        robot.moveInches(7,0.5,15);
 
         gold = robot.tflocate();
 
         // If gold mineral is on left
-        if (gold == 0) {
+        if (gold == 1) {
             robot.rotate(-9,0.75);
             robot.moveInches(27, 0.75, 15);
             robot.moveInches(-4,0.6,15);
@@ -91,7 +92,7 @@ public class CraterCompetitionColoma extends LinearOpMode {
         }
 
         // If gold mineral is in the middle
-        else if (gold == 1) {
+        else if (gold == 0) {
             robot.rotate(9,0.75);
             robot.moveInches(24, 0.75, 15);
             robot.moveInches(-10,0.75, 15);
