@@ -82,7 +82,20 @@ public class gregMotorTest extends LinearOpMode {
         telemetry.update();
         waitForStart();
 
+
+
         while(opModeIsActive()) {
+
+            while(gamepad1.dpad_up) {
+                shoulderMotor.setPower(-1);
+            }
+            shoulderMotor.setPower(0);
+
+            while(gamepad1.dpad_down) {
+                shoulderMotor.setPower(1);
+            }
+            shoulderMotor.setPower(0);
+
 
             // Display the current value
             telemetry.addData("liftMotor Pos: ", liftMotor.getCurrentPosition());
