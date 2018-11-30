@@ -76,9 +76,9 @@ public class CraterCompetitionColoma extends LinearOpMode {
         gold = robot.tflocate();
 
         // If gold mineral is on left
-        if (gold == 1) {
+        if (gold == 0) {
             robot.rotate(-9,0.75);
-            robot.moveInches(27, 0.75, 15);
+            robot.moveInches(20, 0.75, 15);
             robot.moveInches(-4,0.6,15);
             robot.rotate(-73,0.25);
 
@@ -92,9 +92,9 @@ public class CraterCompetitionColoma extends LinearOpMode {
         }
 
         // If gold mineral is in the middle
-        else if (gold == 0) {
+        else if (gold == 1) {
             robot.rotate(9,0.75);
-            robot.moveInches(24, 0.75, 15);
+            robot.moveInches(17, 0.75, 15);
             robot.moveInches(-10,0.75, 15);
 
             robot.rotate(-80,0.5);
@@ -111,31 +111,33 @@ public class CraterCompetitionColoma extends LinearOpMode {
         // If gold mineral is on right
         else if (gold == 2){
             robot.rotate(30,0.75);
-            robot.moveInches(30, 0.75, 15);
-            robot.moveInches(-16,0.75, 15);
+            robot.moveInches(23, 0.75, 15);
+            robot.moveInches(-18,0.75, 15);
 
             robot.rotate(-97,0.5);
 
-            robot.moveInches(56, 0.65, 15);
-            robot.rotate(-42,0.5);
+            robot.moveInches(53, 0.65, 15);
+            robot.rotate(99,0.5);
 
-            robot.moveInches(43, 0.75, 15);
+            robot.moveInches(46, 0.75, 15);
             robot.dropMarker();
-            robot.rotate(-3,0.5);
+            robot.rotate(3,0.5);
             robot.moveInches(-67, 0.75, 15);
         }
         else{
-            robot.rotate(-9, 0.75);
-            robot.moveInches(27, 0.75, 15);
-            robot.rotate(-73, 0.25);
+            robot.rotate(30,0.75);
+            robot.moveInches(23, 0.75, 15);
+            robot.moveInches(-18,0.75, 15);
 
-            robot.moveInches(35, 0.75, 15);
-            robot.rotate(-30, 0.25);
+            robot.rotate(-97,0.5);
 
-            robot.moveInches(30, 0.65, 15);
+            robot.moveInches(53, 0.65, 15);
+            robot.rotate(99,0.5);
+
+            robot.moveInches(46, 0.75, 15);
             robot.dropMarker();
-
-            robot.moveInches(-63, 0.75, 15);
+            robot.rotate(3,0.5);
+            robot.moveInches(-67, 0.75, 15);
         }
         robot.lowerLift();
 
